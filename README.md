@@ -36,3 +36,9 @@ To simply run the CLI:
 ```bash
 go run ./
 ```
+
+## Running tests
+
+```bash
+go test -v
+``` 
