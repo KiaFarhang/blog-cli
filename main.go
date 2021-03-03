@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -21,6 +22,14 @@ func main() {
 	if isBlankString(blogFile) || !strings.HasSuffix(blogFile, ".md") {
 		log.Fatal(errorFileRequired)
 	}
+
+	postContent, err := ioutil.ReadFile(blogFile)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("File content: %s\n", postContent)
 
 	fmt.Println("Welcome to the blog CLI!")
 	reader := bufio.NewReader(os.Stdin)
