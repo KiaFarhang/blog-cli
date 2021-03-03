@@ -3,11 +3,25 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strings"
 )
 
 func main() {
+	const errorFileRequired = "You must pass a Markdown file name to this command; e.g. `main test.md`"
+
+	programArgs := os.Args
+	if len(programArgs) == 1 {
+		log.Fatal(errorFileRequired)
+	}
+
+	blogFile := os.Args[1]
+
+	if isBlankString(blogFile) || !strings.HasSuffix(blogFile, ".md") {
+		log.Fatal(errorFileRequired)
+	}
+
 	fmt.Println("Welcome to the blog CLI!")
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Enter article slug (e.g. my-slug-here): ")
