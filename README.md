@@ -34,5 +34,5 @@ aws dynamodb create-table --table-name blog_posts --attribute-definitions Attrib
 To simply run the CLI:
 
 ```bash
-go run main.go
+go run ./
 ```
