@@ -2,23 +2,23 @@ package main
 
 import "testing"
 
-func TestIsBlankStringEmptyString(t *testing.T) {
-	result := isBlankString("")
-	if result == false {
-		t.Errorf("isBlankString('') = %t; want true", result)
+func TestIsBlankString(t *testing.T) {
+	assert := func(t testing.TB, got, want bool) {
+		t.Helper()
+		if got != want {
+			t.Errorf("got %t, want %t", got, want)
+		}
 	}
-}
 
-func TestIsBlankStringWhitespaceString(t *testing.T) {
-	result := isBlankString("   ")
-	if result == false {
-		t.Errorf("isBlankString('   ' = %t; want true", result)
-	}
-}
+	t.Run("empty string", func(t *testing.T) {
+		assert(t, isBlankString(""), true)
+	})
 
-func TestIsBlankStringNonEmptyString(t *testing.T) {
-	result := isBlankString("k")
-	if result == true {
-		t.Errorf("isBlankString('k') = %t; want false", result)
-	}
+	t.Run("whitespace string", func(t *testing.T) {
+		assert(t, isBlankString("    "), true)
+	})
+
+	t.Run("non-empty string", func(t *testing.T) {
+		assert(t, isBlankString("k"), false)
+	})
 }
